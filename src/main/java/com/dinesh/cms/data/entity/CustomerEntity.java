@@ -3,10 +3,12 @@ package com.dinesh.cms.data.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 public class CustomerEntity {
 
     @Id
@@ -26,6 +28,9 @@ public class CustomerEntity {
     @Column(name = "email", nullable = true)
     //@JsonProperty("email")
     private String email;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Set<OrderEntity> orderList = new HashSet<>();
 
     public int getId() {
         return id;
@@ -57,5 +62,13 @@ public class CustomerEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<OrderEntity> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(Set<OrderEntity> orderList) {
+        this.orderList = orderList;
     }
 }
