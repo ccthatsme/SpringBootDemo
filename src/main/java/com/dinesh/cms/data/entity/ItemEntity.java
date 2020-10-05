@@ -1,11 +1,15 @@
 package com.dinesh.cms.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "items")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class ItemEntity {
 
     @Id
@@ -58,10 +62,10 @@ public class ItemEntity {
     }
 
     public Set<OrderEntity> getOrderList() {
-        return orderList;
+        return ordersBelongingToo;
     }
 
     public void setOrderList(Set<OrderEntity> orderList) {
-        this.orderList = orderList;
+        this.ordersBelongingToo = orderList;
     }
 }

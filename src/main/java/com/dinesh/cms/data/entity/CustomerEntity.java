@@ -1,6 +1,8 @@
 package com.dinesh.cms.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "customers")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class CustomerEntity {
 
     @Id

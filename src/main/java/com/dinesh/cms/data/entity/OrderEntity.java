@@ -1,12 +1,15 @@
 package com.dinesh.cms.data.entity;
 
 import com.dinesh.cms.model.Customer;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "orders_table")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class OrderEntity {
 
     @Id
