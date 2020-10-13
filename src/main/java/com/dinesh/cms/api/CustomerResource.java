@@ -18,15 +18,15 @@ public class CustomerResource {
 
 
     @PostMapping
-    public CustomerEntity addCustomer(@RequestBody CustomerEntity customer){
+    public Customer addCustomer(@RequestBody Customer customer){
 
-        return service.addCustomer(customer);
+        return service.storeOrUpdate(customer);
     };
 
     @GetMapping
-    public List<CustomerEntity> getCustomers(){
+    public List<Customer> getCustomers(){
 
-        return service.getCustomers();
+        return service.getCustomerList();
     }
 
     @GetMapping(value = "/{id}")

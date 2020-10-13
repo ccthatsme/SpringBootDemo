@@ -6,9 +6,11 @@ import com.dinesh.cms.data.repository.CustomerRepo;
 import com.dinesh.cms.data.repository.ItemRepo;
 import com.dinesh.cms.data.repository.OrderRepo;
 import com.dinesh.cms.model.Order;
+import com.dinesh.cms.service.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,18 +18,32 @@ import java.util.List;
 public class OrderService {
 
     @Autowired
-    OrderRepo orderRepo;
+    private OrderRepo orderRepo;
 
     @Autowired
-    ItemRepo itemRepo;
+    private ItemRepo itemRepo;
 
     @Autowired
-    CustomerRepo customerRepo;
+    private CustomerRepo customerRepo;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     private static final int WEIGHT = 5;
 
     public List<OrderEntity> getAllOrders(){
         return orderRepo.findAll();
+    }
+
+    public List<Order> getOrderModels(){
+
+        List<Order> orderList = new ArrayList<>();
+
+        orderRepo.findAll().stream().forEach(entity -> {
+            orderList.add(orderMapper.entityToModel(entity));
+        });
+
+        return orderList;
     }
 
     public OrderEntity getSpecificOrder(int id){

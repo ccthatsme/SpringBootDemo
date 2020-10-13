@@ -6,9 +6,11 @@ import com.dinesh.cms.data.entity.OrderEntity;
 import com.dinesh.cms.data.repository.CustomerRepo;
 import com.dinesh.cms.data.repository.OrderRepo;
 import com.dinesh.cms.model.Customer;
+import com.dinesh.cms.service.mapper.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -21,6 +23,9 @@ public class CustomerService {
     @Autowired
     private CustomerRepo repo;
 
+    @Autowired
+    private CustomerMapper customerMapper;
+
     private int customerIdCount = 1;
     private List<Customer> customerList = new CopyOnWriteArrayList<>();
 
@@ -30,6 +35,22 @@ public class CustomerService {
         return repo.findAll();
 
     };
+
+    public List<Customer> getCustomerList(){
+        List<Customer> custModel = new ArrayList<>();
+
+        repo.findAll().stream().forEach(entity -> {
+            custModel.add(customerMapper.entityToModel(entity));
+        });
+
+        return custModel;
+    }
+
+    public Customer storeOrUpdate(Customer customer){
+        CustomerEntity entity = customerMapper.modelToEntity(customer);
+
+        return customerMapper.entityToModel(repo.save(entity));
+    }
 
     public CustomerEntity addCustomer(CustomerEntity entity){
          repo.save(entity);

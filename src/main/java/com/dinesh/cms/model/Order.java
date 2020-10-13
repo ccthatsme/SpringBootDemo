@@ -4,16 +4,18 @@ import java.util.Date;
 
 public class Order {
 
+    private int orderId;
     private int itemId;
     private int weightPounds;
     private Date date;
     private Customer customer;
 
-    public Order(int itemId, int weightPounds, Date date, Customer customer) {
-        this.itemId = itemId;
-        this.weightPounds = weightPounds;
-        this.date = date;
-        this.customer = customer;
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public int getItemId() {

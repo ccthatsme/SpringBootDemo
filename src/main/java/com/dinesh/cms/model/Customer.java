@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Customer {
 
-    @JsonProperty("id")
+//    @JsonProperty("id")
     private int customerId;
-    @JsonProperty("first")
+//    @JsonProperty("first")
     private String firstName;
-    @JsonProperty("last")
+//    @JsonProperty("last")
     private String lastName;
-    @JsonProperty("email")
+//    @JsonProperty("email")
     private String email;
 
     public int getCustomerId() {

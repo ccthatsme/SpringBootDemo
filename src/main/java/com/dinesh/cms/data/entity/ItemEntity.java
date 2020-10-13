@@ -27,7 +27,7 @@ public class ItemEntity {
     private String location;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
-    private Set<OrderEntity> orderList = new HashSet<>();
+    private Set<OrderEntity> ordersBelongingToo = new HashSet<>();
 
     public int getId() {
         return id;
@@ -61,11 +61,11 @@ public class ItemEntity {
         this.location = location;
     }
 
-    public Set<OrderEntity> getOrderList() {
-        return ordersBelongingToo;
-    }
-
-    public void setOrderList(Set<OrderEntity> orderList) {
-        this.ordersBelongingToo = orderList;
-    }
+//    public Set<OrderEntity> getOrderList() {
+//        return ordersBelongingToo;
+//    }
+//
+//    public void setOrderList(Set<OrderEntity> orderList) {
+//        this.ordersBelongingToo = orderList;
+//    }
 }

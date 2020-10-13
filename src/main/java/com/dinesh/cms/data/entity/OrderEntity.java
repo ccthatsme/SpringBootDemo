@@ -17,7 +17,7 @@ public class OrderEntity {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "FK_itemId", referencedColumnName = "id")
     private ItemEntity item;
 
@@ -27,7 +27,7 @@ public class OrderEntity {
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "FK_cusomterId", referencedColumnName = "id")
     private CustomerEntity customer;
 
